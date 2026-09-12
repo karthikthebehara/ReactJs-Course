@@ -1,0 +1,12 @@
+.card{
+
+  border-radius: 10px;
+  background-color: brown;
+  padding: 20px;
+}
+
+.navbar{
+  padding: 20px;
+  margin: 5px;
+  background-color: aqua;
+}
