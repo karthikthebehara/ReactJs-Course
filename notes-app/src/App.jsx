@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { X } from 'lucide-react';
 
 const App = () => {
 
@@ -11,8 +12,8 @@ const App = () => {
     console.log("Form submited");
     e.preventDefault();
 
-    const copyTask =[...task];
-    copyTask.push({title, details});
+    const copyTask = [...task];
+    copyTask.push({ title, details });
     setTask(copyTask);
     console.log(copyTask);
 
@@ -20,10 +21,16 @@ const App = () => {
     setDetails("")
   }
   
-  
+  const deleteNote =(idx)=>{
+    const copyTask =[...task];
+    copyTask.splice(idx,1);
+    setTask(copyTask);
+  }
+
+
   return (
     <div className="h-screen lg:flex bg-black text-white">
-      
+
       <form className="flex  items-start p-10 flex-col gap-4 lg:w-1/2"
         onSubmit={(e) => {
           submitHandler(e)
@@ -33,7 +40,7 @@ const App = () => {
           type="text"
           placeholder="Enter Hading"
           value={title}
-          onChange={(e)=>{
+          onChange={(e) => {
             setTitle(e.target.value)
           }}
           className="px-5 py-2 border-2 rounded w-full outline-none font-medium"
@@ -42,7 +49,7 @@ const App = () => {
           type="text"
           placeholder="Write Details"
           value={details}
-          onChange={(e)=>{
+          onChange={(e) => {
             setDetails(e.target.value)
           }}
           className="px-5 h-32 py-2 border-2 rounded w-full outline-none font-medium"
@@ -54,14 +61,19 @@ const App = () => {
 
       <div className="  p-10 bg-gray-900 lg:w-1/2 lg:border-l-2">
         <h1 className="text-4xl">Recent Notes</h1>
-        <div className="flex flex-wrap gap-5 mt-5  h-full overflow-auto">
-        
-          {task.map((el, idx)=>{
-            return <div key ={idx} className="h-52 w-40 rounded-xl bg-white text-black p-4">
-              <h3 className="">{el.title}</h3>
+        <div className="flex flex-wrap items-start justify-start gap-5 mt-5  h-full overflow-auto">
+
+          {task.map((el, idx) => {
+            return <div key={idx} className=" flex justify-between flex-col items-start px-4 pt-9 pb-4 relative h-52 w-40 rounded-xl bg-cover  bg-[url('https://www.onlygfx.com/wp-content/uploads/2022/03/realistic-notebook-notepage-paper-background-1.png')] text-black p-4">
+              <div>
+                <h3 className=" text-xl font-bold leading-tight">{el.title}</h3>
+                <p className="text-gray-800 font-medium leading-tight mt-4">{el.details}</p>
+              </div>
+              <button onClick={()=>{
+                deleteNote(idx)}} className="bg-red-600 w-full cursor-pointer active:scale-100 text-white rounded">Delete</button>
             </div>
           })}
-     
+
         </div>
       </div>
     </div>
