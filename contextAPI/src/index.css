@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.light{
+    display: flex;
+  
+  padding: 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightseagreen;
+}
+.dark{
+    display: flex;
+  padding: 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkseagreen;
+}
+.nav2{
+  display: flex;
+  gap: 20px;
+  margin: 15px;
+}
